@@ -4,15 +4,15 @@ export const Post = ({
     _id,
     title,
     imageUrl,
-    article
+    author
 }) => {
     return (
         <div className="allPosts">
         <div className="allPosts-info">
-            <img src={imageUrl} />
-            <h6>{article}</h6>
+            <img src={imageUrl} alt={title}/>
+            <h6>{author}</h6>
             <h2>{title}</h2>
-            <Link to={`/posts/${_id}`} className="details-button">Post Info</Link>
+            <Link to={`/posts/${_id}`} className="post-info-button">Post Info</Link>
         </div>
     </div>
     );

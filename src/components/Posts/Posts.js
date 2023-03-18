@@ -1,6 +1,9 @@
 import { Post } from './Post';
+import { style } from './allPosts.module.css';
 
-export const Posts = () => {
+export const Posts = ({
+    posts
+}) => {
     return (
         <section id="posts-page">
         <h1>All Posts</h1>
