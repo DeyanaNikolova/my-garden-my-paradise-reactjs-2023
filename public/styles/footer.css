@@ -3,16 +3,19 @@
     text-align: center;
     font-size: 25px;
     color:rgb(23, 52, 43);
-    padding-top: 15px;
+    /* padding-top: 15px; */
     padding-bottom: 15px;  
 }
 
 .footer-box>span {
     padding-right: 15px;
+    font-size: 30px;
+   
 }
 
 .footer-box>a {
     display: inline-block;   
     align-content:normal;
     padding-right: 10px;
+    padding-inline-start: 0%;
 }
