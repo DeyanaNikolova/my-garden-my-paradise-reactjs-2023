@@ -13,6 +13,7 @@ import { Login } from './components/Login/Login';
 import { Posts } from './components/Posts/Posts';
 import { AddPost } from './components/AddPost/AddPost';
 import { UpdatePost } from './components/UpdatePost/UpdatePost';
+import { PostDetails } from './components/Posts/PostDetails';
 
 
 function App() {
@@ -36,19 +37,45 @@ function App() {
     navigate('/posts');
   };
 
+  const onPostUpdateSubmit = async (data) => {
+    const result = await postService.updatePost(data._id, data);
+
+    setPosts(state => state.map(p => p._id === data._id ? result : p));
+    navigate(`/posts/${data._id}`);
+  };
+
   const onLoginSubmit = async (data) => {
-    const result = await authService.login(data);
-    setAuth(result);
-    navigate('/posts');
+    try {
+      const result = await authService.login(data);
+      setAuth(result);
+
+      navigate('/');
+
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onRegisterSubmit = async (data) => {
-    const result = await authService.post(data);
+    const { repass, ...registerData } = data;
 
+    if (repass !== registerData.password) {
+      return;
+    }
+    try {
+      const result = await authService.register(registerData);
+
+      setAuth(result);
+      navigate('/');
+
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   const contex = {
     onLoginSubmit,
+    onRegisterSubmit,
     userId: auth._id,
     email: auth.email,
     token: auth.accessToken,
@@ -66,7 +93,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/posts' element={<Posts posts={posts} />} />
             <Route path='/add-post' element={<AddPost onAddPostSubmit={onAddPostSubmit} />} />
-            <Route path='/update-post/:postId' element={<UpdatePost />} />
+            <Route path='/update-post/:postId' element={<UpdatePost onPostUpdateSubmit={onPostUpdateSubmit} />} />
+            <Route path='/posts/:postId' element={<PostDetails />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
           </Routes>

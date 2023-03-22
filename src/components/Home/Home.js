@@ -3,7 +3,6 @@ export const Home = () => {
     return (
         <section id="garden-home-page">
         <div className="welcome-message">
-            <h2>ALL new posts</h2>
             <h3>Welcome to MY Garden - My Paradise</h3>
         </div>
         <img src="/images/gyufyufyu.png" alt="My Garden" />

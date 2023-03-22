@@ -1,28 +1,21 @@
-import { useState } from 'react';
+import { useForm } from "../../hooks/useForm";
+
+
 
 export const AddPost = ({
     onAddPostSubmit,
 }) => {
-
-    const [values, setValues] = useState({
-        title: '',
+  
+    const { values, onChangeHandler, onSubmit } = useForm({
+        title: '', 
         author: '',
         imageUrl: '',
         post: ''
-    });
-
-    const onChangeHandler = (e) => {
-        setValues(state => ({ ...state, [e.target.name]: e.tatget.value }));
-    }
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        onAddPostSubmit(values);
-    }
+    }, onAddPostSubmit);
 
     return (
         <section id="add-post" className="auth">
-            <form id="create" onSubmit={onSubmit}>
+            <form method="POST" onSubmit={onSubmit}>
                 <div className="container">
 
                     <h1>Add Post</h1>
@@ -51,7 +44,6 @@ export const AddPost = ({
                         placeholder="Upload a photo..."
                         value={values.imageUrl}
                         onChange={onChangeHandler}
-
                     />
 
                     <label htmlFor="post">Post:</label>
