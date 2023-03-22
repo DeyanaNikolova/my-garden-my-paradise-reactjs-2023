@@ -27,16 +27,16 @@ export const AddPost = ({
 
                 <h1>Add Post</h1>
                 <label htmlFor="post-title">Post title:</label>
-                <input value={values.title} onChange={onChangeHandler} type="text" id="title" name="title" placeholder="Enter post title..." />
+                <input value={values.title} onChange={onChangeHandler} type="text" name="title" placeholder="Enter post title..." />
 
                 <label htmlFor="author">By:</label>
-                <input value={values.author} onChange={onChangeHandler} type="text" id="author" name="author" placeholder="Enter author name..." />
+                <input value={values.author} onChange={onChangeHandler} type="text" name="author" placeholder="Enter author name..." />
 
                 <label htmlFor="post-img">Image:</label>
-                <input value={values.imageUrl} onChange={onChangeHandler} type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." />
+                <input value={values.imageUrl} onChange={onChangeHandler} type="text" name="imageUrl" placeholder="Upload a photo..." />
 
                 <label htmlFor="post">Post:</label>
-                <textarea name="post" id="post" value={values.post} onChange={onChangeHandler}></textarea>
+                <textarea name="post" value={values.post} onChange={onChangeHandler}></textarea>
                 <input className="btn submit" type="submit" value="Add Post" />
             </div>
         </form>

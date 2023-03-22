@@ -1,7 +1,8 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import * as postService from './postService/postService';
+import { AuthContext } from './contexts/AuthContext';
+import { postService } from './services/postService';
 
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
@@ -15,13 +16,13 @@ import { EditPost } from './components/EditPost/EditPost';
 
 function App() {
   const navigate = useNavigate();
-  const [posts, setPosts ] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     postService.getAllPost()
-    .then(result =>{
-      setPosts(result);
-    })
+      .then(result => {
+        setPosts(result);
+      })
   }, []);
 
   const onAddPostSubmit = async (postData) => {
@@ -30,25 +31,30 @@ function App() {
     setPosts(state => [...state, newPost]);
     navigate('/posts');
   };
-  
+
+const contextValues = {
+
+};
 
   return (
-    <div id="box">
-      <Header />
+    <AuthContext.Provider>
+      <div id="box">
+        <Header />
 
-      <main id="main-container">
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/posts' element={<Posts posts={posts}/>}/>
-          <Route path='/add-post' element={<AddPost onAddPostSubmit={onAddPostSubmit} />}/>
-          <Route path='/edit-post/:postId' element={<EditPost />}/>
-          <Route path='/register' element={<Register />}/>
-          <Route path='/login' element={<Login />}/>
-        </Routes>
-      </main>
+        <main id="main-container">
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/posts' element={<Posts posts={posts} />} />
+            <Route path='/add-post' element={<AddPost onAddPostSubmit={onAddPostSubmit} />} />
+            <Route path='/edit-post/:postId' element={<EditPost />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+          </Routes>
+        </main>
 
-    <Footer />
-    </div>
+        <Footer />
+      </div>
+    </AuthContext.Provider>
   );
 }
 
