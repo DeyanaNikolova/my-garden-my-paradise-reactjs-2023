@@ -9,13 +9,11 @@
 
 .footer-box>span {
     padding-right: 15px;
-    font-size: 30px;
-   
+    font-size: 30px; 
 }
 
 .footer-box>a {
     display: inline-block;   
     align-content:normal;
     padding-right: 10px;
-    padding-inline-start: 0%;
 }
