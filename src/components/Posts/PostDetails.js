@@ -20,7 +20,6 @@ export const PostDetails = () => {
     useEffect(() => {
         postService.getPostById(postId)
             .then(result => {
-                console.log(result);
                 setPost(result);
             });
     }, [postId]);
@@ -79,14 +78,13 @@ export const PostDetails = () => {
 
                 {isOwner && (
                     <div className="buttons">
-                        <Link to={`/posts/${post._id}/update`} className="button">Edit</Link>
+                        <Link to={`/update-post/${post._id}`} className="button">Edit</Link>
                         <button className="button" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
 
             </div>
 
-            {/* <!-- Bonus --> */}
             {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
             <article className="add-comment">
                 <label>Add new comment:</label>
