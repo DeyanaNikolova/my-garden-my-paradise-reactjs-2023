@@ -1,5 +1,5 @@
 import { Post } from './Post';
-import './AllPosts.module.css';
+
 
 export const Posts = ({
     posts
@@ -13,7 +13,7 @@ export const Posts = ({
         )}
 
         {posts.length === 0 && (
-            <h3 className="no-articles">No articles yet</h3>
+            <h3 className="no-posts">No posts yet</h3>
         )}
     </section>
     );

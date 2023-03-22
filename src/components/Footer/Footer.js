@@ -2,6 +2,6 @@
 
 export const Footer = () => {
     return (
-        <div>All rights reserved &copy;</div>
+        <div className="footer">All rights reserved &copy;</div>
     );
 };

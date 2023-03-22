@@ -5,10 +5,10 @@ export const Login = () => {
         <form id="login">
 
             <div className="container">
-                <div className="brand-logo"></div>
+                {/* <div className="post-logo"></div> */}
                 <h1>Login</h1>
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Sokka@gmail.com" />
+                <input type="email" id="email" name="email" placeholder="maria@email.com" />
 
                 <label htmlFor="login-pass">Password:</label>
                 <input type="password" id="login-password" name="password" />

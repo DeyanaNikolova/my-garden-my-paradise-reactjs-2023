@@ -7,8 +7,8 @@ export const Post = ({
     author
 }) => {
     return (
-        <div className="allPosts">
-        <div className="allPosts-info">
+        <div className="all-posts">
+        <div className="all-posts-info">
             <img src={imageUrl} alt={title}/>
             <h6>{author}</h6>
             <h2>{title}</h2>

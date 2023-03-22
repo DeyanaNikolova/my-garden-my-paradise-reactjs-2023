@@ -2,7 +2,7 @@
 export const PostDetails = () => {
     return (<section id="post-details">
         <h1>Post Details</h1>
-        <div className="info-section">
+        <div className="post-info-section">
 
             <div className="post-header">
                 <img className="post-img" src={post.imageUrl} />
@@ -40,11 +40,11 @@ export const PostDetails = () => {
 
         {/* <!-- Bonus --> */}
         {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-        <article className="create-comment">
+        <article className="add-comment">
             <label>Add new comment:</label>
             <form className="form" onSubmit={onCommentSubmit}>
                 <input type="text" name="username" placeholder="John" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <textarea name="comment" placeholder="Comment......" value={comment} onChange={(e) => setComment(e.target.value)} ></textarea>
+                <textarea name="comment" placeholder="Type your comment here" value={comment} onChange={(e) => setComment(e.target.value)} ></textarea>
                 <input className="btn submit" type="submit" value="Add Comment" />
             </form>
         </article>

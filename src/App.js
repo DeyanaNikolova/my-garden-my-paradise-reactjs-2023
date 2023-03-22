@@ -1,7 +1,6 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-
 import * as postService from './postService/postService';
 
 import { Header } from './components/Header/Header';

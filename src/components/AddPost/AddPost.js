@@ -21,7 +21,7 @@ export const AddPost = ({
     }
 
     return (
-        <section id="create-page" className="auth">
+        <section id="add-post" className="auth">
         <form id="create" onSubmit={onSubmit}>
             <div className="container">
 

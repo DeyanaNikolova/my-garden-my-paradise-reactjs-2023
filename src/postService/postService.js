@@ -1,6 +1,6 @@
 import * as request from './requester';
 
-const baseUrl = 'http://loclhost:3030/jsonstore/posts';
+const baseUrl = 'http://loclhost:3030/data/posts';
 
 export const getAllPost = async () => {
     const result = await request.get(baseUrl);

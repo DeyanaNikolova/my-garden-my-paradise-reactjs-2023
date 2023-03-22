@@ -2,7 +2,7 @@
 
 export const EditPost = () => {
     return (
-        <section id="edit-page" className="auth">
+        <section id="update-post" className="auth">
             <form id="edit">
                 <div className="container">
 
