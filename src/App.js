@@ -90,7 +90,7 @@ function App() {
 
         <main id="main-container">
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<Home posts={posts} />} />
             <Route path='/posts' element={<Posts posts={posts} />} />
             <Route path='/add-post' element={<AddPost onAddPostSubmit={onAddPostSubmit} />} />
             <Route path='/update-post/:postId' element={<UpdatePost onPostUpdateSubmit={onPostUpdateSubmit} />} />

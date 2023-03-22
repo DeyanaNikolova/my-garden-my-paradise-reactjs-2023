@@ -57,8 +57,6 @@ footer {
     bottom: 0;
 }
 
-
-
 nav a {
     margin: 0 0.5em;
 }
@@ -70,7 +68,7 @@ nav a:hover {
 }
 
 .home:hover {
-    color: rgb(82, 133, 139);
+    color: rgb(169, 207, 187);
 }
 
 #user,
