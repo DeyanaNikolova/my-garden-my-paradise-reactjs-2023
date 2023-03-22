@@ -3,11 +3,9 @@
     position: relative;
     width: 650px;
     height: auto;
-    /* border-radius: 20px; */
     padding: 40px;
     box-sizing: border-box;
     background: #c9a683;
-    /* box-shadow: 0px 0px 32px 0px #49535e, -14px -14px 20px #191c21; */
 }
 
 
@@ -65,8 +63,6 @@ input[type="email"] {
     height: 50px;
     margin-top: 10px;
     font-size: 24px;
-    /* border-radius: 50px; */
-    /* box-shadow: inset 6px 6px 6px #b0d3b2, inset -6px -6px 6px white; */
 }
 
 label[for="password"]>input {
@@ -77,12 +73,10 @@ label[for="password"]>input {
     margin-top: 30px;
     background: #65ba97;
     height: 60px;
-    /* border-radius: 20px; */
     color: white;
     font-size: 26px;
     cursor: pointer;
     font-weight: 900;
-    /* box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white; */
     transition: 0.5s;
 }
 
@@ -104,6 +98,5 @@ label[for="password"]>input {
     text-decoration: none;
     color: black;
     background: rgb(165, 218, 188);
-    /* border-radius: 10px; */
     padding: 5px;
 }

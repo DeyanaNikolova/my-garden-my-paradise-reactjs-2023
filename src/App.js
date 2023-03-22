@@ -2,7 +2,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { AuthContext } from './contexts/AuthContext';
-import { postService } from './services/postService';
+import { postServiceFactory } from './services/postService';
+import { authServiceFactory } from './services/authService';
 
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
@@ -11,12 +12,15 @@ import { Register } from './components/Register/Register'
 import { Login } from './components/Login/Login';
 import { Posts } from './components/Posts/Posts';
 import { AddPost } from './components/AddPost/AddPost';
-import { EditPost } from './components/EditPost/EditPost';
+import { UpdatePost } from './components/UpdatePost/UpdatePost';
 
 
 function App() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
+  const [auth, setAuth] = useState({});
+  const postService = postServiceFactory(auth.accessToken);
+  const authService = authServiceFactory(auth.accessToken);
 
   useEffect(() => {
     postService.getAllPost()
@@ -32,12 +36,28 @@ function App() {
     navigate('/posts');
   };
 
-const contextValues = {
+  const onLoginSubmit = async (data) => {
+    const result = await authService.login(data);
+    setAuth(result);
+    navigate('/posts');
+  };
 
-};
+  const onRegisterSubmit = async (data) => {
+    const result = await authService.post(data);
+
+  }
+
+  const contex = {
+    onLoginSubmit,
+    userId: auth._id,
+    email: auth.email,
+    token: auth.accessToken,
+    isAuthenticated: !!auth.accessToken
+
+  };
 
   return (
-    <AuthContext.Provider>
+    <AuthContext.Provider value={contex}>
       <div id="box">
         <Header />
 
@@ -46,7 +66,7 @@ const contextValues = {
             <Route path='/' element={<Home />} />
             <Route path='/posts' element={<Posts posts={posts} />} />
             <Route path='/add-post' element={<AddPost onAddPostSubmit={onAddPostSubmit} />} />
-            <Route path='/edit-post/:postId' element={<EditPost />} />
+            <Route path='/update-post/:postId' element={<UpdatePost />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
           </Routes>

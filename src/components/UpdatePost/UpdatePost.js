@@ -1,6 +1,6 @@
 
 
-export const EditPost = () => {
+export const UpdatePost = () => {
     return (
         <section id="update-post" className="auth">
             <form id="edit">

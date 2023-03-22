@@ -2,7 +2,7 @@ import { requestFactory } from './requester';
 
 const baseUrl = 'http://loclhost:3030/data/posts';
 
-export const postService = (token) => {
+export const postServiceFactory = (token) => {
     const request = requestFactory(token);
 
 
