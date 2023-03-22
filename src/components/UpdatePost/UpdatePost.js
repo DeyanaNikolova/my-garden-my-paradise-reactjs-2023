@@ -1,12 +1,29 @@
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useService } from '../../hooks/useService';
+import { postServiceFactory } from '../../services/postService';
 
+export const UpdatePost = ({
+    onPostUpdateSubmit,
+}) => {
 
-export const UpdatePost = () => {
+    const { postId } = useParams();
+    const postService = useService(postServiceFactory);
+
+    const [values, setValues] = useState({
+        _id: '',
+        title: '',
+        author: '',
+        imageUrl: '',
+        post: ''
+    });
+    
     return (
         <section id="update-post" className="auth">
             <form id="edit">
                 <div className="container">
 
-                    <h1>Edit Post</h1>
+                    <h1>Update Post</h1>
                     <label htmlFor="post-title">Post title:</label>
                     <input type="text" id="title" name="title" defaultValue="" />
                     
