@@ -32,7 +32,6 @@ function App() {
 
   const onAddPostSubmit = async (postData) => {
     const newPost = postService.addPost(postData);
-
     setPosts(state => [...state, newPost]);
     navigate('/posts');
   };
@@ -52,7 +51,7 @@ function App() {
       navigate('/');
 
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 

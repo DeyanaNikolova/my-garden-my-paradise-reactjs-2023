@@ -6,14 +6,13 @@ import { useService } from '../../hooks/useService';
 import { AuthContext } from '../../contexts/AuthContext';
 
 
-
 export const PostDetails = () => {
 
-    const {userId } = useContext(AuthContext);
-    const [username, setUsername] = useState('');
-    const [comment, setComment] = useState('');
+    const { userId } = useContext(AuthContext);
     const { postId } = useParams();
     const [post, setPost] = useState({});
+    const [username, setUsername] = useState('');
+    const [comment, setComment] = useState('');
     const postService = useService(postServiceFactory);
     const navigate = useNavigate();
 
@@ -26,23 +25,24 @@ export const PostDetails = () => {
 
     const onCommentSubmit = async (e) => {
         e.preventDefault();
+        if (userId !== postId._ownerId) {
 
+        }
         const newComment = await postService.addComment(postId, {
             username,
             comment
         });
-    
+        console.log(newComment);
         setPost(state => ({ ...state, comments: { ...state.comments, [newComment._id]: newComment } }));
         setUsername('');
         setComment('');
     };
-  
+
     const onDeleteClick = async () => {
         await postService.del(post._id);
 
         navigate('/posts');
     };
-
     const isOwner = post._ownerId === userId;
 
     return (
@@ -55,7 +55,6 @@ export const PostDetails = () => {
                 </div>
 
                 <p className="text">{post.post}</p>
-
 
                 <div className="details-comments">
                     <h2>Comments:</h2>
@@ -73,19 +72,14 @@ export const PostDetails = () => {
                     {/* {post.comments.length === 0 &&
                         <p className="no-comment">No comments.</p>
                     } */}
-
                 </div>
-
                 {isOwner && (
                     <div className="buttons">
                         <Link to={`/update-post/${post._id}`} className="button">Edit</Link>
                         <button className="button" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
-
             </div>
-
-            {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
             <article className="add-comment">
                 <label>Add new comment:</label>
                 <form className="form" onSubmit={onCommentSubmit}>

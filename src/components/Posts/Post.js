@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-
 export const Post = ({
     _id,
     title,
