@@ -31,8 +31,8 @@ export const postServiceFactory = (token) => {
         await request.del(`${baseUrl}/${postId}`);
     };
 
-    const addComment = async (gameId, data) => {
-        const comment = await request.post(`${baseUrl}/${gameId}/comments`, data);
+    const addComment = async (postId, data) => {
+        const comment = await request.post(`http://localhost:3030/data/comments/${postId}`, data);
 
         return comment;
     };

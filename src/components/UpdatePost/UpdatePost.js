@@ -19,6 +19,13 @@ export const UpdatePost = ({
         post: ''
     }, onPostUpdateSubmit);
 
+    useEffect(() => {
+        postService.getPostById(postId)
+        .then(result =>{
+            changeValues(result);
+        });
+    }, [postId]);
+
     return (
         <section id="update-post" className="auth">
             <form method="PUT" onSubmit={onSubmit}>
