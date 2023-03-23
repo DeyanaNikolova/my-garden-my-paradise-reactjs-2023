@@ -29,8 +29,7 @@ export const PostDetails = () => {
     }, [postId]);
 
     const onCommentSubmit = async () => {
-       // e.preventDefault();
-
+      
         const newComment = await commentService.createComment(values);
         console.log(newComment);
 

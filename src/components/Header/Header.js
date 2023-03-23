@@ -9,19 +9,19 @@ export const Header = () => {
     <header>
       <h1><Link className="home" to="/">My Garden</Link></h1>
       <nav>
-        <Link to="/posts">All Posts</Link>
+        <Link to="/posts" className="nav-links" >All Posts</Link>
         {isAuthenticated && (
           <div id="user">
-            <Link to="/add-post">Add Post</Link>
-            <Link to="/logout">Logout</Link>
-            <span>{email}</span>
+            <Link to="/add-post" className="nav-links" >Add Post</Link>
+            <Link to="/logout" className="nav-links" >Logout</Link>
+            <span className="nav-links" >{email}</span>
           </div>
         )}
 
         {!isAuthenticated && (
           <div id="guest">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login" className="nav-links" >Login</Link>
+            <Link to="/register" className="nav-links" >Register</Link>
           </div>
         )}
       </nav>
