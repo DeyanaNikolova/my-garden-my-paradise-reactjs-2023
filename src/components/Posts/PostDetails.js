@@ -1,10 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
 
 import { postServiceFactory } from '../../services/postService';
 import { commentServiceFactory } from '../../services/commentService';
 import { useService } from '../../hooks/useService';
 import { AuthContext } from '../../contexts/AuthContext';
+
 
 
 export const PostDetails = () => {
@@ -18,6 +20,7 @@ export const PostDetails = () => {
     const commentService = useService(commentServiceFactory);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         postService.getPostById(postId)
             .then(result => {
@@ -25,20 +28,25 @@ export const PostDetails = () => {
             });
     }, [postId]);
 
-    const onCommentSubmit = async (e) => {
-        e.preventDefault();
-        if (userId !== postId._ownerId) {
+    const onCommentSubmit = async () => {
+       // e.preventDefault();
 
-        }
-        const newComment = await commentService.addComment(postId, {
+        const newComment = await commentService.createComment(values);
+        console.log(newComment);
+
+        const addedComment = await postService.addComment(postId, {
             username,
             comment
         });
-        console.log(newComment);
-        setPost(state => ({ ...state, comments: { ...state.comments, [newComment._id]: newComment } }));
+        setPost(state => ({ ...state, comments: { ...state.comments, [addedComment._id]: addedComment } }));
         setUsername('');
         setComment('');
     };
+    const { values, onChangeHandler, onSubmit } = useForm({
+        username: '',
+        comment: ''
+    }, onCommentSubmit);
+
 
     const onDeleteClick = async () => {
         await postService.del(post._id);
@@ -46,7 +54,7 @@ export const PostDetails = () => {
         navigate('/posts');
     };
     const isOwner = post._ownerId === userId;
-
+    const isUser = userId !== post._ownerId;
     return (
         <section id="post-details">
             <h1>Post Details</h1>
@@ -61,19 +69,19 @@ export const PostDetails = () => {
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
-                        {/* {post.comments.map(x =>
+                        {post.comments && Object.values(post.comments).map(x =>
                             <li key={x._id} className="comment">
                                 <p>{x.username}: {x.comment}</p>
                             </li>
-                        )} */}
+                        )}
 
-                        <li className="comment">
+                        {/* <li className="comment">
                             <p>Content: </p>
-                        </li>
+                        </li>  */}
                     </ul>
-                    {/* {post.comments.length === 0 &&
+                    {/* {!Object.values(post.comments).length &&
                         <p className="no-comment">No comments.</p>
-                    } */}
+                    }  */}
                 </div>
                 {isOwner && (
                     <div className="buttons">
@@ -82,14 +90,28 @@ export const PostDetails = () => {
                     </div>
                 )}
             </div>
-            <article className="add-comment">
-                <label>Add new comment:</label>
-                <form className="form" onSubmit={onCommentSubmit}>
-                    <input type="text" name="username" placeholder="Type author's name" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    <textarea name="comment" placeholder="Type your comment here" value={comment} onChange={(e) => setComment(e.target.value)} ></textarea>
-                    <input className="btn submit" type="submit" value="Add Comment" />
-                </form>
-            </article>
+            {isUser && (
+                <article className="add-comment">
+                    <label>Add new comment:</label>
+                    <form className="form" onSubmit={onSubmit}>
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Type author's name"
+                            value={values.username}
+                            onChange={onChangeHandler}
+                        />
+                        <textarea
+                            name="comment"
+                            placeholder="Type your comment here"
+                            value={values.comment}
+                            onChange={onChangeHandler} >
+                        </textarea>
+                        <input className="btn submit" type="submit" value="Add Comment" />
+                    </form>
+                </article>
+            )}
+
         </section>
     );
 };

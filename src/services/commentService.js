@@ -14,15 +14,15 @@ export const commentServiceFactory = (token) => {
         return comments;
     }
 
-    const addComment = async (postId, data) => {
-        const comment = await request.post(`${baseUrl}/${postId}`, data);
+    const createComment = async (data) => {
+        const result = await request.post(baseUrl, data);
 
-        return comment;
+        return result;
     };
 
     return {
         getAllComments,
-        addComment
+        createComment
     };
 };
 
