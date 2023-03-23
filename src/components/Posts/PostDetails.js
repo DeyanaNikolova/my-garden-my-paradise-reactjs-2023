@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { postServiceFactory } from '../../services/postService';
+import { commentServiceFactory } from '../../services/commentService';
 import { useService } from '../../hooks/useService';
 import { AuthContext } from '../../contexts/AuthContext';
 
@@ -14,6 +15,7 @@ export const PostDetails = () => {
     const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
     const postService = useService(postServiceFactory);
+    const commentService = useService(commentServiceFactory);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,7 +30,7 @@ export const PostDetails = () => {
         if (userId !== postId._ownerId) {
 
         }
-        const newComment = await postService.addComment(postId, {
+        const newComment = await commentService.addComment(postId, {
             username,
             comment
         });
@@ -83,7 +85,7 @@ export const PostDetails = () => {
             <article className="add-comment">
                 <label>Add new comment:</label>
                 <form className="form" onSubmit={onCommentSubmit}>
-                    <input type="text" name="username" placeholder="Author name" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" name="username" placeholder="Type author's name" value={username} onChange={(e) => setUsername(e.target.value)} />
                     <textarea name="comment" placeholder="Type your comment here" value={comment} onChange={(e) => setComment(e.target.value)} ></textarea>
                     <input className="btn submit" type="submit" value="Add Comment" />
                 </form>

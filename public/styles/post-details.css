@@ -4,7 +4,6 @@
     width: 980px;
     margin: 90px auto;
     overflow: hidden;
-    border-radius: 10px;
     transition: all 0.4s;
 }
 
@@ -24,7 +23,6 @@
     height: 100%;
     background-blend-mode: multiply;
     z-index: 2;
-    border-radius: 10px;
     background-color: rgb(208, 223, 205);
 }
 
@@ -49,7 +47,7 @@
 
 .type {
     display: inline-block;
-    color: #959595;
+    color: #7f9783;
     font-size: 19px;
     margin-left: 10px;
 }
@@ -79,18 +77,6 @@
     font-size: 25px;
     color: #545454;
 }
-
-/* .movie_social {
-    height: 10%;
-    padding-left: 15px;
-    padding-bottom: 20px;
-}
-
-.movie_social {
-    font-size: 1.6rem;
-    padding-top: 20px;
-    text-align: center;
-} */
 
 .buttons {
     height: 10%;

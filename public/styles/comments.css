@@ -19,7 +19,7 @@
     height: auto;
     padding: 40px;
     box-sizing: border-box;
-    background: #6f5d9c;
+    background: rgb(44, 88, 21);
    
 }
 
@@ -37,7 +37,6 @@
     position: static;
     margin: 20px auto 25px auto;
     border-radius: 16px;
-    margin-left: 60px;
     background: #879879;
     color: rgb(44, 88, 21);
 }
@@ -49,6 +48,6 @@
 
 .create-comment>.button:hover {
     background-color: #879879;
-    color: white;
+    color: rgb(44, 88, 21);
     cursor: pointer;
 }
