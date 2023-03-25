@@ -73,10 +73,6 @@ export const PostDetails = () => {
                                 <p>{x.username}: {x.comment}</p>
                             </li>
                         )}
-
-                        {/* <li className="comment">
-                            <p>Content: </p>
-                        </li>  */}
                     </ul>
                     {/* {!Object.values(post.comments).length &&
                         <p className="no-comment">No comments.</p>
