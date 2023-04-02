@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const PostCard = ({
+export const LatestPosts = ({
     _id,
     title,
     imageUrl,
