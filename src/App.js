@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/AuthContext';
+import { PostProvider } from './contexts/PostContext';
 
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
@@ -13,7 +14,6 @@ import { AddPost } from './components/AddPost/AddPost';
 import { UpdatePost } from './components/UpdatePost/UpdatePost';
 import { PostDetails } from './components/Posts/PostDetails';
 import { RouteGuard } from './components/common/RouteGuard';
-import { PostProvider } from './contexts/PostContext';
 import { PostAuthor } from './components/common/PostAuthor';
 
 

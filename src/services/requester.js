@@ -16,7 +16,7 @@ const requester = async (method, url, data) => {
     const serializedAuth = localStorage.getItem('auth');
     if (serializedAuth) {
         const auth = JSON.parse(serializedAuth);
-        
+        console.log(auth);
         if (auth.accessToken) {
             options.headers = {
                 ...options.headers,
@@ -26,7 +26,6 @@ const requester = async (method, url, data) => {
     }
 
     const response = await fetch(url, options);
-
     if (response.status === 204) {
         return {};
     }
