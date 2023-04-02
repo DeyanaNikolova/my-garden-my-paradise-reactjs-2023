@@ -7,6 +7,7 @@ import { Footer } from './components/Footer/Footer';
 import { Home } from './components/Home/Home';
 import { Register } from './components/Register/Register'
 import { Login } from './components/Login/Login';
+import { Logout } from './components/Logout/Logout';
 import { Posts } from './components/Posts/Posts';
 import { AddPost } from './components/AddPost/AddPost';
 import { UpdatePost } from './components/UpdatePost/UpdatePost';
@@ -36,10 +37,11 @@ function App() {
               <Route element={<RouteGuard />}>
                 <Route path='/update-post/:postId' element={
                   <PostAuthor>
-                    <UpdatePost />
+                     <UpdatePost />
                   </PostAuthor>
                 } />
                 <Route path='/add-post' element={<AddPost />} />
+                <Route path='/logout' element={<Logout />} />
 
               </Route>
             </Routes>

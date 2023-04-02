@@ -13,12 +13,12 @@ import { usePostContext } from '../../contexts/PostContext';
 export const PostDetails = () => {
 
     const { userId, isAuthenticated } = useContext(AuthContext);
+    const commentService = commentServiceFactory();
     const { postId } = useParams();
     const [post, setPost] = useState({});
     const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
     const postService = useService(postServiceFactory);
-    const commentService = useService(commentServiceFactory);
     const { deletePost } = usePostContext();
     const navigate = useNavigate();
 
@@ -28,13 +28,13 @@ export const PostDetails = () => {
             postService.getPostById(postId),
             commentService.getAllComments(postId)
         ]).then(([postData, comments]) => {
-                setPost(postData);
-                setComment(comments);
-            });
+            setPost(postData);
+            setComment(comments);
+        });
     }, [postId]);
 
     const onCommentSubmit = async () => {
-      
+
         const newComment = await commentService.createComment(values);
         console.log(newComment);
 
@@ -89,29 +89,28 @@ export const PostDetails = () => {
                         <button className="button" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
+                {isUser && (
+                    <article className="add-comment">
+                        <label>Add new comment:</label>
+                        <form className="form" onSubmit={onSubmit}>
+                            <input
+                                type="text"
+                                name="username"
+                                placeholder="Type author's name"
+                                value={values.username}
+                                onChange={onChangeHandler}
+                            />
+                            <textarea
+                                name="comment"
+                                placeholder="Type your comment here"
+                                value={values.comment}
+                                onChange={onChangeHandler} >
+                            </textarea>
+                            <input className="btn submit" type="submit" value="Add Comment" />
+                        </form>
+                    </article>
+                )}
             </div>
-            {isUser && (
-                <article className="add-comment">
-                    <label>Add new comment:</label>
-                    <form className="form" onSubmit={onSubmit}>
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="Type author's name"
-                            value={values.username}
-                            onChange={onChangeHandler}
-                        />
-                        <textarea
-                            name="comment"
-                            placeholder="Type your comment here"
-                            value={values.comment}
-                            onChange={onChangeHandler} >
-                        </textarea>
-                        <input className="btn submit" type="submit" value="Add Comment" />
-                    </form>
-                </article>
-            )}
-
         </section>
     );
 };

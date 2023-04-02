@@ -9,7 +9,6 @@ import { postServiceFactory } from '../../services/postService';
 export const UpdatePost = () => {
     const { onPostUpdateSubmit} = usePostContext();
     const { postId } = useParams();
-    console.log(postId);
     const postService = useService(postServiceFactory);
 
     const { values, onChangeHandler, onSubmit, changeValues } = useForm({
@@ -23,6 +22,7 @@ export const UpdatePost = () => {
     useEffect(() => {
         postService.getPostById(postId)
         .then(result =>{
+            console.log(result);
             changeValues(result);
         });
     }, [postId]);
@@ -58,7 +58,7 @@ export const UpdatePost = () => {
                         onChange={onChangeHandler}
                     />
 
-                    <label htmlFor="post">Post :</label>
+                    <label htmlFor="post">Post:</label>
                     <textarea name="post" value={values.post} onChange={onChangeHandler} ></textarea>
                     <input className="btn submit" type="submit" value="Update Post" />
 

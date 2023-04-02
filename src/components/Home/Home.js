@@ -10,7 +10,6 @@ export const Home = () => {
         fetch(url)
         .then(res => res.json())
         .then(result =>{
-            console.log(result);
             setLatestPosts(result);    
         })
     }, []);
