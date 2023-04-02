@@ -1,9 +1,10 @@
 import { requestFactory } from './requester';
 
-const baseUrl = 'http://localhost:3030/data/posts';
 
-export const postServiceFactory = (token) => {
-    const request = requestFactory(token);
+const baseUrl = 'http://localhost:3030/data/posts';
+export const postServiceFactory = () => {
+    const request = requestFactory();
+   
 
     const getAllPost = async () => {
         const result = await request.get(baseUrl);
