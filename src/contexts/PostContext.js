@@ -1,62 +1,64 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useService } from '../hooks/useService';
 import { postServiceFactory } from '../services/postService';
 
 export const PostContext = createContext();
 
 export const PostProvider = ({
-    children
+  children
 }) => {
-    const navigate = useNavigate();
-    const [posts, setPosts] = useState([]);
-    const postService = postServiceFactory();
+  const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const postService = useService(postServiceFactory);
 
-    useEffect(() => {
-        postService.getAllPost()
-        .then(result =>{
-            setPosts(result);
-        });
-    }, []);
+  useEffect(() => {
+    postService.getAllPost()
+      .then(result => {
+        setPosts(result);
+      })
+  }, []);
 
-    const onAddPostSubmit = async (postData) => {
-        const newPost = postService.addPost(postData);
-        setPosts(state => [...state, newPost]);
-        navigate('/posts');
-      };
-    
-      const onPostUpdateSubmit = async (data) => {
-        const result = await postService.updatePost(data._id, data);
-    
-        setPosts(state => state.map(p => p._id === data._id ? result : p));
-        navigate(`/posts/${data._id}`);
-      };
+  const onAddPostSubmit = async (postData) => {
+    const newPost = postService.addPost(postData);
 
-      const deletePost = (postId) => {
-        setPosts(state => state.filter(p => p._id !== postId));
-      };
-     
-      const getPostById = (postId) => {
-        return posts.find(p => p._id === postId);
-      };
+    setPosts(state => [...state, newPost]);
+    navigate('/posts');
+  };
 
-      const context = {
-        posts, 
-        onAddPostSubmit,
-        onPostUpdateSubmit,
-        deletePost,
-        getPostById
-      };
+  const onPostUpdateSubmit = async (data) => {
+    const result = await postService.updatePost(data._id, data);
 
-      return (
-        <PostContext.Provider value={context}>
-            {children}
-        </PostContext.Provider>
-      );
+    setPosts(state => state.map(p => p._id === data._id ? result : p));
+    navigate(`/posts/${data._id}`);
+  };
+
+  const deletePost = (postId) => {
+    setPosts(state => state.filter(p => p._id !== postId));
+  };
+
+  const getPostById = (postId) => {
+    return posts.find(p => p._id === postId);
+  };
+
+  const context = {
+    posts,
+    onAddPostSubmit,
+    onPostUpdateSubmit,
+    deletePost,
+    getPostById
+  };
+
+  return (
+    <PostContext.Provider value={context}>
+      {children}
+    </PostContext.Provider>
+  );
 };
 
 export const usePostContext = () => {
-    const context = useContext(PostContext);
+  const context = useContext(PostContext);
 
-    return context;
+  return context;
 };

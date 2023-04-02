@@ -1,8 +1,19 @@
-import { PostCard } from './PostCard';
+import { useState, useEffect } from 'react';
+import { LatestPosts} from './LatestPosts';
 
-export const Home = ({
-    posts
-}) => {
+
+const url = 'http://localhost:3030/data/posts';
+export const Home = () => {
+    const [latestPosts, setLatestPosts] = useState([]);
+
+    useEffect(()=> {
+        fetch(url)
+        .then(res => res.json())
+        .then(result =>{
+            console.log(result);
+            setLatestPosts(result);    
+        })
+    }, []);
     return (
         <section id="garden-home-page">
             <div className="welcome-message">
@@ -12,12 +23,12 @@ export const Home = ({
 
             <div id="home-page">
                 <h1>Latest Posts</h1>
-                {posts.map(x =>
-                    <PostCard key={x._id} {...x} />
+                {/* {latestPosts.map(x =>
+                    <LatestPosts key={x._id} {...x} />
                 )}
-                {posts.length === 0 && (
+                {latestPosts.length === 0 && (
                     <p className="no-posts">No posts yet</p>
-                )}
+                )} */}
             </div>
         </section>
     );

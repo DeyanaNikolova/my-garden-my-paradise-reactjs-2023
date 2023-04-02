@@ -6,25 +6,30 @@ import { postServiceFactory } from '../../services/postService';
 import { commentServiceFactory } from '../../services/commentService';
 import { useService } from '../../hooks/useService';
 import { AuthContext } from '../../contexts/AuthContext';
+import { usePostContext } from '../../contexts/PostContext';
 
 
 
 export const PostDetails = () => {
 
-    const { userId } = useContext(AuthContext);
+    const { userId, isAuthenticated } = useContext(AuthContext);
     const { postId } = useParams();
     const [post, setPost] = useState({});
     const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
     const postService = useService(postServiceFactory);
     const commentService = useService(commentServiceFactory);
+    const { deletePost } = usePostContext();
     const navigate = useNavigate();
 
 
     useEffect(() => {
-        postService.getPostById(postId)
-            .then(result => {
-                setPost(result);
+        Promise.all([
+            postService.getPostById(postId),
+            commentService.getAllComments(postId)
+        ]).then(([postData, comments]) => {
+                setPost(postData);
+                setComment(comments);
             });
     }, [postId]);
 

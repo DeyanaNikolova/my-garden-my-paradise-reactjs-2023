@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { usePostContext } from '../../contexts/PostContext';
 
 import { useForm } from '../../hooks/useForm';
 import { useService } from '../../hooks/useService';
 import { postServiceFactory } from '../../services/postService';
 
-export const UpdatePost = ({
-    onPostUpdateSubmit,
-}) => {
+export const UpdatePost = () => {
+    const { onPostUpdateSubmit} = usePostContext();
     const { postId } = useParams();
+    console.log(postId);
     const postService = useService(postServiceFactory);
 
     const { values, onChangeHandler, onSubmit, changeValues } = useForm({
