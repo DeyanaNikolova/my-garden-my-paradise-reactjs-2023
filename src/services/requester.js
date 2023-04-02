@@ -1,4 +1,4 @@
-const request = async (method, token, url, data) => {
+const request = async (method, url, data) => {
 
     const options = {};
 
@@ -13,12 +13,19 @@ const request = async (method, token, url, data) => {
         }
     }
 
-    if (token) {
-        options.headers = {
-            ...options.headers,
-            'X-Authorization': token
-        };
+    const serializedAuth = localStorage.getItem('auth');
+
+    if(serializedAuth){
+        const auth = JSON.parse(serializedAuth);
+
+        if (auth.accessToken) {
+            options.headers = {
+                ...options.headers,
+                'X-Authorization': auth.accessToken
+            };
+        }
     }
+   
 
     const response = await fetch(url, options);
 
@@ -35,13 +42,13 @@ const request = async (method, token, url, data) => {
     return result;
 };
 
-export const requestFactory = (token) => {
+export const requestFactory = () => {
     return {
-        get: request.bind(null, 'GET', token),
-        post: request.bind(null, 'POST', token),
-        put: request.bind(null, 'PUT', token),
-        patch: request.bind(null, 'PATCH', token),
-        del: request.bind(null, 'DELETE', token),
+        get: request.bind(null, 'GET'),
+        post: request.bind(null, 'POST'),
+        put: request.bind(null, 'PUT'),
+        patch: request.bind(null, 'PATCH'),
+        del: request.bind(null, 'DELETE'),
     }
-}
+};
 

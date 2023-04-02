@@ -5,7 +5,6 @@ const baseUrl = 'http://localhost:3030/data/posts';
 export const postServiceFactory = (token) => {
     const request = requestFactory(token);
 
-
     const getAllPost = async () => {
         const result = await request.get(baseUrl);
         const posts = Object.values(result);

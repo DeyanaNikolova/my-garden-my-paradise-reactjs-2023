@@ -28,10 +28,10 @@ function App() {
           <main id="main-container">
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
               <Route path='/posts' element={<Posts />} />
               <Route path='/posts/:postId' element={<PostDetails />} />
-              <Route path='/register' element={<Register />} />
-              <Route path='/login' element={<Login />} />
 
               <Route element={<RouteGuard />}>
                 <Route path='/update-post/:postId' element={
