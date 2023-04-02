@@ -49,6 +49,6 @@ export const requestFactory = () => {
         put: request.bind(null, 'PUT'),
         patch: request.bind(null, 'PATCH'),
         del: request.bind(null, 'DELETE'),
-    }
+    };
 };
 
