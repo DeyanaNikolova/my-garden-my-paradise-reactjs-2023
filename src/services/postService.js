@@ -15,7 +15,7 @@ export const postServiceFactory = (token) => {
     const getPostById = async (postId) => {
         const post = await request.get(`${baseUrl}/${postId}`);
         return post;
-    }
+    };
 
     const addPost = async (postData) => {
         const newPost = await request.post(baseUrl, postData);

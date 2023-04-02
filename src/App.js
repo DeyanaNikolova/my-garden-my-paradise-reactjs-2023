@@ -1,9 +1,9 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import { AuthContext } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { postServiceFactory } from './services/postService';
-import { authServiceFactory } from './services/authService';
+
 
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
@@ -14,14 +14,15 @@ import { Posts } from './components/Posts/Posts';
 import { AddPost } from './components/AddPost/AddPost';
 import { UpdatePost } from './components/UpdatePost/UpdatePost';
 import { PostDetails } from './components/Posts/PostDetails';
+import { RouteGuard } from './components/common/RouteGuard';
 
 
 function App() {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
-  const [auth, setAuth] = useState({});
+ 
   const postService = postServiceFactory(auth.accessToken);
-  const authService = authServiceFactory(auth.accessToken);
+ 
 
   useEffect(() => {
     postService.getAllPost()
@@ -43,47 +44,13 @@ function App() {
     navigate(`/posts/${data._id}`);
   };
 
-  const onLoginSubmit = async (data) => {
-    try {
-      const result = await authService.login(data);
-      setAuth(result);
 
-      navigate('/');
 
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
 
-  const onRegisterSubmit = async (data) => {
-    const { repass, ...registerData } = data;
 
-    if (repass !== registerData.password) {
-      return;
-    }
-    try {
-      const result = await authService.register(registerData);
-
-      setAuth(result);
-      navigate('/');
-
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
-
-  const contex = {
-    onLoginSubmit,
-    onRegisterSubmit,
-    userId: auth._id,
-    email: auth.email,
-    token: auth.accessToken,
-    isAuthenticated: !!auth.accessToken
-
-  };
 
   return (
-    <AuthContext.Provider value={contex}>
+    <AuthProvider>
       <div id="box">
         <Header />
 
@@ -91,17 +58,21 @@ function App() {
           <Routes>
             <Route path='/' element={<Home posts={posts} />} />
             <Route path='/posts' element={<Posts posts={posts} />} />
-            <Route path='/add-post' element={<AddPost onAddPostSubmit={onAddPostSubmit} />} />
-            <Route path='/update-post/:postId' element={<UpdatePost onPostUpdateSubmit={onPostUpdateSubmit} />} />
             <Route path='/posts/:postId' element={<PostDetails />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
+
+            <Route element={<RouteGuard />} >
+            <Route path='/update-post/:postId' element={<UpdatePost />} />
+            <Route path='/add-post' element={<AddPost />} />
+
+            </Route>
           </Routes>
         </main>
 
         <Footer />
       </div>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 
