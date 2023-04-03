@@ -4,7 +4,7 @@ import { Post } from './Post';
 
 export const Posts = () => {
     const { posts } = usePostContext();
-
+    
     return (
         <section id="posts-page">
             <h1>All Posts</h1>

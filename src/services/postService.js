@@ -32,18 +32,11 @@ export const postServiceFactory = (token) => {
         await request.del(`${baseUrl}/${postId}`);
     };
 
-
-    const addComment = async (postId, data) => {
-        const comment = await request.post(`${baseUrl}/${postId}/comments`, data);
-
-        return comment;
-    };
     return {
         getAllPost,
         getPostById,
         addPost,
         updatePost,
         deletePost,
-        addComment
     };
 };

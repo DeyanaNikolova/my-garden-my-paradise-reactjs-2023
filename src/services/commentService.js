@@ -8,14 +8,15 @@ export const commentServiceFactory = (token) => {
 
     const getAllComments = async (postId) => {
         const query = encodeURIComponent(`postId="${postId}"`);
+        const relationQuery = encodeURIComponent(`author=_ownerId:users`);
 
-        const result = await request.get(`${baseUrl}?where=${query}`);
+        const result = await request.get(`${baseUrl}?where=${query}&load=${relationQuery}`);
         const comments = Object.values(result);
         return comments;
     }
 
-    const createComment = async (data) => {
-        const result = await request.post(baseUrl, data);
+    const createComment = async (postId, data) => {
+        const result = await request.post(baseUrl, {postId, data });
 
         return result;
     };

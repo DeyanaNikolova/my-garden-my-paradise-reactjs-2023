@@ -4,10 +4,8 @@ import { useForm } from '../../hooks/useForm';
 
 import { postServiceFactory } from '../../services/postService';
 import { commentServiceFactory } from '../../services/commentService';
-import { useService } from '../../hooks/useService';
 import { AuthContext } from '../../contexts/AuthContext';
 import { usePostContext } from '../../contexts/PostContext';
-
 
 
 export const PostDetails = () => {
@@ -16,9 +14,8 @@ export const PostDetails = () => {
     const commentService = commentServiceFactory();
     const { postId } = useParams();
     const [post, setPost] = useState({});
-    const [username, setUsername] = useState('');
     const [comment, setComment] = useState('');
-    const postService = useService(postServiceFactory);
+    const postService = postServiceFactory();
     const { deletePost } = usePostContext();
     const navigate = useNavigate();
 
@@ -28,26 +25,23 @@ export const PostDetails = () => {
             postService.getPostById(postId),
             commentService.getAllComments(postId)
         ]).then(([postData, comments]) => {
-            setPost(postData);
+             setPost(state => ({...state, ...postData,  comments:[...comments]}));
             setComment(comments);
+           console.log(post);
         });
     }, [postId]);
 
-    const onCommentSubmit = async () => {
+    const onCommentSubmit = async (values) => {
 
-        const newComment = await commentService.createComment(values);
-        console.log(newComment);
-
-        const addedComment = await postService.addComment(postId, {
-            username,
-            comment
-        });
-        setPost(state => ({ ...state, comments: { ...state.comments, [addedComment._id]: addedComment } }));
-        setUsername('');
+        const result = await commentService.createComment(postId, values);
+     
+        const newComment = Object.values(result.data);
+         setPost(state => ({...state, comments: {...newComment}}));
         setComment('');
+        navigate(`/posts/${postId}`);
     };
     const { values, onChangeHandler, onSubmit } = useForm({
-        username: '',
+        author: '',
         comment: ''
     }, onCommentSubmit);
 
@@ -58,7 +52,7 @@ export const PostDetails = () => {
         navigate('/posts');
     };
     const isOwner = post._ownerId === userId;
-    const isUser = userId !== post._ownerId;
+   // const isUser = userId !== post._ownerId;
     return (
         <section id="post-details">
             <h1>Post Details</h1>
@@ -73,15 +67,15 @@ export const PostDetails = () => {
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
-                        {post.comments && Object.values(post.comments).map(x =>
+                        {comment && Object.values(comment).map(x=> (
                             <li key={x._id} className="comment">
-                                <p>{x.username}: {x.comment}</p>
+                                <p>{x.data.author}: {x.data.comment}</p>
                             </li>
-                        )}
+                        ))}
                     </ul>
-                    {/* {!Object.values(post.comments).length &&
+                    {comment?.length === 0 && (
                         <p className="no-comment">No comments.</p>
-                    }  */}
+                    )}
                 </div>
                 {isOwner && (
                     <div className="buttons">
@@ -89,15 +83,15 @@ export const PostDetails = () => {
                         <button className="button" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
-                {isUser && (
+                {!isOwner && isAuthenticated && (
                     <article className="add-comment">
                         <label>Add new comment:</label>
                         <form className="form" onSubmit={onSubmit}>
                             <input
                                 type="text"
-                                name="username"
+                                name="author"
                                 placeholder="Type author's name"
-                                value={values.username}
+                                value={values.author}
                                 onChange={onChangeHandler}
                             />
                             <textarea

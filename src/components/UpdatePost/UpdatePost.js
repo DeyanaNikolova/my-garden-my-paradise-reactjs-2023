@@ -22,7 +22,6 @@ export const UpdatePost = () => {
     useEffect(() => {
         postService.getPostById(postId)
         .then(result =>{
-            console.log(result);
             changeValues(result);
         });
     }, [postId]);

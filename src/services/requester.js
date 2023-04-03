@@ -16,7 +16,7 @@ const requester = async (method, url, data) => {
     const serializedAuth = localStorage.getItem('auth');
     if (serializedAuth) {
         const auth = JSON.parse(serializedAuth);
-        console.log(auth);
+        
         if (auth.accessToken) {
             options.headers = {
                 ...options.headers,
