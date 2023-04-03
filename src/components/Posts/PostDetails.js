@@ -47,12 +47,13 @@ export const PostDetails = () => {
 
 
     const onDeleteClick = async () => {
-        await postService.del(post._id);
-
+        await postService.deletePost(post._id);
+        deletePost()
         navigate('/posts');
     };
+    
     const isOwner = post._ownerId === userId;
-   // const isUser = userId !== post._ownerId;
+
     return (
         <section id="post-details">
             <h1>Post Details</h1>
