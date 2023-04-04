@@ -4,7 +4,7 @@ export const Post = ({
     _id,
     title,
     imageUrl,
-    author
+    author,
 }) => {
  
     return (

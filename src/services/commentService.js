@@ -3,29 +3,25 @@ import { requestFactory } from "./requester";
 
 const baseUrl = 'http://localhost:3030/data/comments';
 
-export const commentServiceFactory = (token) => {
-    const request = requestFactory(token);
 
-    const getAllComments = async (postId) => {
-        const query = encodeURIComponent(`postId="${postId}"`);
-        const relationQuery = encodeURIComponent(`author=_ownerId:users`);
+const request = requestFactory();
 
-        const result = await request.get(`${baseUrl}?where=${query}&load=${relationQuery}`);
-        const comments = Object.values(result);
-        return comments;
-    }
+export const getAllComments = async (postId) => {
+    const query = encodeURIComponent(`postId="${postId}"`);
+    const relationQuery = encodeURIComponent(`author=_ownerId:users`);
 
-    const createComment = async (postId, comment) => {
-        const result = await request.post(baseUrl, {postId, comment });
+    const result = await request.get(`${baseUrl}?where=${query}&load=${relationQuery}`);
+    const comments = Object.values(result);
+    return comments;
+}
 
-        return result;
-    };
+export const createComment = async (postId, comment) => {
+    const result = await request.post(baseUrl, { postId, comment });
 
-    return {
-        getAllComments,
-        createComment
-    };
+    return result;
 };
+
+
 
 
 

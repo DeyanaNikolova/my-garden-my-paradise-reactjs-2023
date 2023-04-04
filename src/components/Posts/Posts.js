@@ -4,11 +4,11 @@ import { Post } from './Post';
 
 export const Posts = () => {
     const { posts } = usePostContext();
-    
+console.log(posts);
     return (
         <section id="posts-page">
             <h1>All Posts</h1>
-            {posts.map(x =>
+            {posts.map(x => 
                 <Post key={x._id} {...x} />
             )}
 

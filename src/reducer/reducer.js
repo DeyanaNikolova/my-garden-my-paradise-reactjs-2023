@@ -7,14 +7,14 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 comments: [
-                    ...state.comments,
+                    state.comments,
                     {
                         ...action.payload,
                         author: {
-                            email: action.userEmail
+                            email: action.userEmail,
                         }
                     }
-                ]
+                ],
             }
         default:
             return state;

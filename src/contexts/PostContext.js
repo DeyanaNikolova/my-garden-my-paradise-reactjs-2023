@@ -14,14 +14,15 @@ export const PostProvider = ({
 
   useEffect(() => {
     postService.getAllPost()
-      .then(result => {
-        setPosts(result);
-      });
+        .then(result => {
+           setPosts(result);
+        });
   }, []);
 
   const onAddPostSubmit = async (postData) => {
     const newPost = postService.addPost(postData);
-    setPosts(state => ([...state, newPost]));
+
+    setPosts(state => [...state, newPost]);
     navigate('/posts');
   };
 

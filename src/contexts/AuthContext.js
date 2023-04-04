@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { authServiceFactory } from "../services/authService";
 
@@ -54,7 +55,7 @@ export const AuthProvider = ({
         onRegisterSubmit,
         onLogout,
         userId: auth._id,
-        email: auth.email,
+        userEmail: auth.email,
         token: auth.accessToken,
         isAuthenticated: !!auth.accessToken
     };

@@ -16,7 +16,7 @@ export const AddComment = ({
                 type="text"
                 name="email"
                 placeholder="Type author's email"
-                value={values.author}
+                value={values.email}
                 onChange={onChangeHandler}
             /> */}
             <textarea

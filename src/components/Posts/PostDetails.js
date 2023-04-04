@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 
 import { reducer } from '../../reducer/reducer';
 import { postServiceFactory } from '../../services/postService';
-import { commentServiceFactory } from '../../services/commentService';
+import * as commentService from '../../services/commentService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { usePostContext } from '../../contexts/PostContext';
 import { AddComment } from '../AddComment/AddComment';
@@ -13,7 +13,6 @@ export const PostDetails = () => {
 
     const { postId } = useParams();
     const { userId, isAuthenticated, userEmail } = useAuthContext();
-    const commentService = commentServiceFactory();
     const [post, dispatch] = useReducer(reducer, {});
     const postService = postServiceFactory();
     const { deletePost } = usePostContext();
