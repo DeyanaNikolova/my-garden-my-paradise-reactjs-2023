@@ -1,49 +1,54 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useReducer } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useForm } from '../../hooks/useForm';
 
+import { reducer } from '../../reducer/reducer';
 import { postServiceFactory } from '../../services/postService';
 import { commentServiceFactory } from '../../services/commentService';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { usePostContext } from '../../contexts/PostContext';
+import { AddComment } from '../AddComment/AddComment';
 
 
 export const PostDetails = () => {
 
-    const { userId, isAuthenticated } = useContext(AuthContext);
-    const commentService = commentServiceFactory();
     const { postId } = useParams();
-    const [post, setPost] = useState({});
-    const [comment, setComment] = useState('');
+    const { userId, isAuthenticated, userEmail } = useAuthContext();
+    const commentService = commentServiceFactory();
+    const [post, dispatch] = useReducer(reducer, {});
     const postService = postServiceFactory();
     const { deletePost } = usePostContext();
     const navigate = useNavigate();
-
 
     useEffect(() => {
         Promise.all([
             postService.getPostById(postId),
             commentService.getAllComments(postId)
         ]).then(([postData, comments]) => {
-             setPost(state => ({...state, ...postData,  comments:[...comments]}));
-            setComment(comments);
-           console.log(post);
+            const postState = {
+                ...postData,
+                comments
+            };
+            dispatch({ type: 'post_fetch', payload: postState });
+            //      setPost(state => ({...state, ...postData,  comments:[...comments]}));
+            //     setComment(comments);
+               console.log(postState);
         });
     }, [postId]);
 
     const onCommentSubmit = async (values) => {
+        const result = await commentService.createComment(postId, values.comment);
 
-        const result = await commentService.createComment(postId, values);
-     
-        const newComment = Object.values(result.data);
-         setPost(state => ({...state, comments: {...newComment}}));
-        setComment('');
+        dispatch({
+            type: 'add_comment', 
+            payload: result,
+            userEmail,
+        });
+        // const newComment = Object.values(result.data);
+        //  setPost(state => ({...state, comments: {...newComment}}));
+        // setComment('');
         navigate(`/posts/${postId}`);
     };
-    const { values, onChangeHandler, onSubmit } = useForm({
-        author: '',
-        comment: ''
-    }, onCommentSubmit);
+
 
 
     const onDeleteClick = async () => {
@@ -51,7 +56,7 @@ export const PostDetails = () => {
         deletePost()
         navigate('/posts');
     };
-    
+
     const isOwner = post._ownerId === userId;
 
     return (
@@ -68,13 +73,13 @@ export const PostDetails = () => {
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
-                        {comment && Object.values(comment).map(x=> (
+                        {post.comments && post.comments.map(x => (
                             <li key={x._id} className="comment">
-                                <p>{x.data.author}: {x.data.comment}</p>
+                                <p>{x.author.email}: {x.comment}</p>
                             </li>
                         ))}
                     </ul>
-                    {comment?.length === 0 && (
+                    {!post.comments?.length && (
                         <p className="no-comment">No comments.</p>
                     )}
                 </div>
@@ -84,28 +89,8 @@ export const PostDetails = () => {
                         <button className="button" onClick={onDeleteClick}>Delete</button>
                     </div>
                 )}
-                {!isOwner && isAuthenticated && (
-                    <article className="add-comment">
-                        <label>Add new comment:</label>
-                        <form className="form" onSubmit={onSubmit}>
-                            <input
-                                type="text"
-                                name="author"
-                                placeholder="Type author's name"
-                                value={values.author}
-                                onChange={onChangeHandler}
-                            />
-                            <textarea
-                                name="comment"
-                                placeholder="Type your comment here"
-                                value={values.comment}
-                                onChange={onChangeHandler} >
-                            </textarea>
-                            <input className="btn submit" type="submit" value="Add Comment" />
-                        </form>
-                    </article>
-                )}
             </div>
+            {!isOwner && isAuthenticated && (<AddComment onCommentSubmit={onCommentSubmit} />)}
         </section>
     );
 };

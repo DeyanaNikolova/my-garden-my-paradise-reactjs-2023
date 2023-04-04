@@ -6,7 +6,7 @@ import { postServiceFactory } from '../services/postService';
 export const PostContext = createContext();
 
 export const PostProvider = ({
-  children
+  children,
 }) => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
@@ -16,13 +16,12 @@ export const PostProvider = ({
     postService.getAllPost()
       .then(result => {
         setPosts(result);
-      })
+      });
   }, []);
 
   const onAddPostSubmit = async (postData) => {
     const newPost = postService.addPost(postData);
-
-    setPosts(state => [...state, newPost]);
+    setPosts(state => ([...state, newPost]));
     navigate('/posts');
   };
 
