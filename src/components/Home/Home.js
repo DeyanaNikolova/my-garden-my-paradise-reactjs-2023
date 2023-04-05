@@ -12,7 +12,7 @@ export const Home = () => {
         .then(res => res.json())
         .then(result =>{
             const sliced = result.splice(0, 3)
-           // console.log(sliced);
+        
             setLatestPosts(sliced);    
         });
     }, []);
