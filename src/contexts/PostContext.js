@@ -15,9 +15,10 @@ export const PostProvider = ({
   useEffect(() => {
     postService.getAllPost()
         .then(result => {
-           setPosts(result);
+            setPosts(result);
+           // navigate('/posts');
         });
-  }, []);
+}, []);
 
   const onAddPostSubmit = async (postData) => {
     const newPost = postService.addPost(postData);

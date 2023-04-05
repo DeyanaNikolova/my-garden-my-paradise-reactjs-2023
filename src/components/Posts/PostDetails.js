@@ -25,12 +25,11 @@ export const PostDetails = () => {
         ]).then(([postData, comments]) => {
             const postState = {
                 ...postData,
-                comments
+                comments,
             };
             dispatch({ type: 'post_fetch', payload: postState });
             //      setPost(state => ({...state, ...postData,  comments:[...comments]}));
             //     setComment(comments);
-               console.log(postState);
         });
     }, [postId]);
 
@@ -51,9 +50,14 @@ export const PostDetails = () => {
 
 
     const onDeleteClick = async () => {
-        await postService.deletePost(post._id);
-        deletePost()
-        navigate('/posts');
+        const confirmend = window.confirm(`Are you sure you want to delete ${post.title}`);
+
+        if(confirmend){
+            await postService.deletePost(post._id);
+            deletePost()
+            navigate('/posts');
+        }
+      
     };
 
     const isOwner = post._ownerId === userId;

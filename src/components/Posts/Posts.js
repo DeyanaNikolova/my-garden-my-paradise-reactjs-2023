@@ -1,10 +1,18 @@
-import { usePostContext } from '../../contexts/PostContext';
+import { useEffect, useState } from 'react';
+import { postServiceFactory } from '../../services/postService';
+
 import { Post } from './Post';
 
-
 export const Posts = () => {
-    const { posts } = usePostContext();
-console.log(posts);
+    const [posts, setPosts] = useState([]);
+    const postService = postServiceFactory()
+    useEffect(()=> {
+        postService.getAllPost()
+        .then(result =>{
+            setPosts(result);
+        })
+    }, []);
+  
     return (
         <section id="posts-page">
             <h1>All Posts</h1>
