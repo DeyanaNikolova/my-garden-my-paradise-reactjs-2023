@@ -4,6 +4,7 @@ export const LatestPosts = ({
     _id,
     title,
     imageUrl,
+    _createdOn
 }) => {
     return (
         <div className="post">
@@ -11,6 +12,7 @@ export const LatestPosts = ({
             <img src={imageUrl} />
         </div>
         <h3>{title}</h3>
+        {/* <h2>Published on: {_createdOn}</h2> */}
         <div className="post-buttons">
             <Link to={`/posts/${_id}`} className="btn details-btn">Details</Link>
         </div>

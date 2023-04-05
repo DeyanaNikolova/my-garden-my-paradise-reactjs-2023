@@ -4,15 +4,20 @@ import { LatestPosts} from './LatestPosts';
 
 const url = 'http://localhost:3030/data/posts';
 export const Home = () => {
+    const querySort = encodeURIComponent("_createdOn");
     const [latestPosts, setLatestPosts] = useState([]);
 
     useEffect(()=> {
-        fetch(url)
+        fetch(`${url}?sortBy=${querySort} desc`)
         .then(res => res.json())
         .then(result =>{
-            setLatestPosts(result);    
-        })
+            const sliced = result.splice(0, 3)
+           // console.log(sliced);
+            setLatestPosts(sliced);    
+        });
     }, []);
+
+ 
     return (
         <section id="garden-home-page">
             <div className="welcome-message">
@@ -22,12 +27,12 @@ export const Home = () => {
 
             <div id="home-page">
                 <h1>Latest Posts</h1>
-                {/* {latestPosts.map(x =>
+                {latestPosts.map(x =>
                     <LatestPosts key={x._id} {...x} />
                 )}
                 {latestPosts.length === 0 && (
                     <p className="no-posts">No posts yet</p>
-                )} */}
+                )}
             </div>
         </section>
     );
