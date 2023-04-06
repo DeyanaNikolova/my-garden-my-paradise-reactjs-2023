@@ -3,6 +3,7 @@ import { postServiceFactory } from '../../services/postService';
 
 import { Post } from './Post';
 
+
 export const Posts = () => {
     const [posts, setPosts] = useState([]);
     const postService = postServiceFactory()

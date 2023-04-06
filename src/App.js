@@ -16,7 +16,7 @@ import { PostDetails } from './components/Posts/PostDetails';
 import { RouteGuard } from './components/common/RouteGuard';
 import { PostAuthor } from './components/common/PostAuthor';
 import { Resources } from './components/Resources/Resources';
-
+import { Search } from './components/Search/Search';
 
 function App() {
 
@@ -35,6 +35,7 @@ function App() {
               <Route path='/posts' element={<Posts />} />
               <Route path='/posts/:postId' element={<PostDetails />} />
               <Route path='/resources' element={<Resources />} />
+              <Route path='/search' element={<Search />} />
 
               <Route element={<RouteGuard />}>
                 <Route path='/update-post/:postId' element={
