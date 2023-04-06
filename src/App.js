@@ -4,6 +4,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { PostProvider } from './contexts/PostContext';
 
 import { Header } from './components/Header/Header';
+import { About } from './components/About/About.js';
 import { Footer } from './components/Footer/Footer';
 import { Home } from './components/Home/Home';
 import { Register } from './components/Register/Register'
@@ -18,6 +19,7 @@ import { PostAuthor } from './components/common/PostAuthor';
 import { Resources } from './components/Resources/Resources';
 import { Search } from './components/Search/Search';
 
+
 function App() {
 
 
@@ -30,6 +32,7 @@ function App() {
           <main id="main-container">
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/about' element={<About />}/>
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/posts' element={<Posts />} />
