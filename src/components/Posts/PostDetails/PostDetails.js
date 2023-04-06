@@ -1,5 +1,3 @@
-import styles from './Post-details.module.css'
-
 import { useEffect, useReducer } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 

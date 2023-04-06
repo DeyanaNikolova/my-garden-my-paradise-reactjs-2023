@@ -1,5 +1,3 @@
-import styles from './Header.module.css';
-
 import { useState, useEffect } from 'react';
 import { LatestPosts } from './LatestPosts';
 

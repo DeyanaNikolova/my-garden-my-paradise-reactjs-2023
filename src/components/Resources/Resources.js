@@ -1,5 +1,3 @@
-import styles from './Resources.module.css';
-
 export const Resources = () => {
     return (
         <section id="resources-page">

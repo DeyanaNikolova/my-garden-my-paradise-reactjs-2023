@@ -1,5 +1,3 @@
-import style from './Comments.module.css';
-
 import { useForm } from '../../hooks/useForm';
 
 export const AddComment = ({
