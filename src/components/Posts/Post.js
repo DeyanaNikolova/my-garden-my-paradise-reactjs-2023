@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 export const Post = ({
     _id,
     title,
+    date,
     imageUrl,
     author,
 }) => {
@@ -13,6 +14,7 @@ export const Post = ({
             <img src={imageUrl} alt={title}/>
             <h2>Title: {title}</h2>
             <h6>Author: {author}</h6>
+            <h6>Published on: {date}</h6>
             <Link to={`/posts/${_id}`} className="post-info-button">Details</Link>
         </div>
     </div>

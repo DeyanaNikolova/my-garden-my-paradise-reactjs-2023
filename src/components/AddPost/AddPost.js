@@ -7,6 +7,7 @@ export const AddPost = () => {
     const { values, onChangeHandler, onSubmit } = useForm({
         title: '', 
         author: '',
+        date: '',
         imageUrl: '',
         post: ''
     }, onAddPostSubmit);
@@ -32,6 +33,14 @@ export const AddPost = () => {
                         name="author"
                         placeholder="Enter author name..."
                         value={values.author}
+                        onChange={onChangeHandler}
+                    />
+                       <label htmlFor="date">Date:</label>
+                    <input
+                        type="text"
+                        name="date"
+                        placeholder="Enter date..."
+                        value={values.date}
                         onChange={onChangeHandler}
                     />
 

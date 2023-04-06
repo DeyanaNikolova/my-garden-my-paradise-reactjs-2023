@@ -15,6 +15,7 @@ export const UpdatePost = () => {
         _id: '',
         title: '',
         author: '',
+        date: '',
         imageUrl: '',
         post: ''
     }, onPostUpdateSubmit);
@@ -46,6 +47,15 @@ export const UpdatePost = () => {
                         name="author"
                         placeholder="Author"
                         value={values.author}
+                        onChange={onChangeHandler}
+                    />
+
+                    <label htmlFor="date">Date:</label>
+                    <input
+                        type="text"
+                        name="date"
+                        placeholder="Enter date..."
+                        value={values.date}
                         onChange={onChangeHandler}
                     />
 
