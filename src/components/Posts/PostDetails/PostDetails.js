@@ -1,12 +1,14 @@
+import styles from './Post-details.module.css'
+
 import { useEffect, useReducer } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
-import { reducer } from '../../reducer/reducer';
-import { postServiceFactory } from '../../services/postService';
-import * as commentService from '../../services/commentService';
-import { useAuthContext } from '../../contexts/AuthContext';
-import { usePostContext } from '../../contexts/PostContext';
-import { AddComment } from '../AddComment/AddComment';
+import { reducer } from '../../../reducer/reducer';
+import { postServiceFactory } from '../../../services/postService';
+import * as commentService from '../../../services/commentService';
+import { useAuthContext } from '../../../contexts/AuthContext';
+import { usePostContext } from '../../../contexts/PostContext';
+import { AddComment } from '../../AddComment/AddComment';
 
 
 export const PostDetails = () => {

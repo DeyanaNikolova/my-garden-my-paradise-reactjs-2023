@@ -13,7 +13,7 @@ import { Logout } from './components/Logout/Logout';
 import { Posts } from './components/Posts/Posts';
 import { AddPost } from './components/AddPost/AddPost';
 import { UpdatePost } from './components/UpdatePost/UpdatePost';
-import { PostDetails } from './components/Posts/PostDetails';
+import { PostDetails } from './components/Posts/PostDetails/PostDetails';
 import { RouteGuard } from './components/common/RouteGuard';
 import { PostAuthor } from './components/common/PostAuthor';
 import { Resources } from './components/Resources/Resources';

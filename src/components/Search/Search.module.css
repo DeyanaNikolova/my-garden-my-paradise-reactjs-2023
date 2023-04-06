@@ -16,7 +16,7 @@
     margin-bottom: 17px;
 }
 
-.container>input[type="search"] {
+.container>input[type="text"] {
     background: #ecf0f3;
     padding: 30px;
     padding-left: 20px;

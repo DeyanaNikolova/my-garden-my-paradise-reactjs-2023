@@ -34,11 +34,18 @@ export const postServiceFactory = (token) => {
         await request.del(`${baseUrl}/${postId}`);
     };
 
+    const getSearch = async (searchValue) => {
+        const querySearch = encodeURIComponent(`title="${searchValue}"`);
+      const matches = await request.get(`${baseUrl}?where=${querySearch}`);
+        return matches;
+    };
+
     return {
         getAllPost,
         getPostById,
         addPost,
         updatePost,
         deletePost,
+        getSearch
     };
 };

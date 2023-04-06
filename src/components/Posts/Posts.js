@@ -6,7 +6,8 @@ import { Post } from './Post';
 
 export const Posts = () => {
     const [posts, setPosts] = useState([]);
-    const postService = postServiceFactory()
+    const postService = postServiceFactory();
+    
     useEffect(()=> {
         postService.getAllPost()
         .then(result =>{
