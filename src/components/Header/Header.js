@@ -8,8 +8,10 @@ export const Header = () => {
   return (
     <header>
       <h1><Link className="home" to="/">My Garden</Link></h1>
+      
       <nav>
         <Link to="/posts" className="nav-links" >All Posts</Link>
+        <Link to="/resources" className="nav-links">Resources</Link>
         {isAuthenticated && (
           <div id="user">
             <Link to="/add-post" className="nav-links" >Add Post</Link>

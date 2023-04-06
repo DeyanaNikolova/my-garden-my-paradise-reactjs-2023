@@ -15,6 +15,7 @@ import { UpdatePost } from './components/UpdatePost/UpdatePost';
 import { PostDetails } from './components/Posts/PostDetails';
 import { RouteGuard } from './components/common/RouteGuard';
 import { PostAuthor } from './components/common/PostAuthor';
+import { Resources } from './components/Resources/Resources';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path='/register' element={<Register />} />
               <Route path='/posts' element={<Posts />} />
               <Route path='/posts/:postId' element={<PostDetails />} />
+              <Route path='/resources' element={<Resources />} />
 
               <Route element={<RouteGuard />}>
                 <Route path='/update-post/:postId' element={
