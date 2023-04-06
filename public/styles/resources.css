@@ -17,6 +17,12 @@
     text-transform: uppercase;
     text-align:justify;
 }
+#resource-type {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #0c4f0a;
+    font-size: 40px;
+    text-align:center;
+}
 
 .links>a {
     color: #d960c7;
