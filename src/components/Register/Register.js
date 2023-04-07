@@ -1,11 +1,14 @@
+
 import { Link } from 'react-router-dom';
 
 import { useForm } from '../../hooks/useForm';
 import { useAuthContext } from '../../contexts/AuthContext';
 
+
 export const Register = () => {
     const { onRegisterSubmit } = useAuthContext();
-    const { values, onChangeHandler, onSubmit } = useForm({
+   
+    const { values, validation, focused, onChangeHandler, onSubmit, handleFocus } = useForm({
         email: '',
         password: '',
         repass: ''
@@ -25,24 +28,37 @@ export const Register = () => {
                         placeholder="maria@email.com"
                         value={values.email}
                         onChange={onChangeHandler}
+                       // pattern="/^[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-z]*$/"
+                        required={true}
+                       focused={focused.toString()}
+                        onBlur={handleFocus}
                     />
-
+                    {validation.email && <p>{validation.email}</p>}
+        
                     <label htmlFor="pass">Password:</label>
                     <input
                         type="password"
                         name="password"
                         value={values.password}
                         onChange={onChangeHandler}
+                        pattern="^(?=.*[0-9])(?=,*[a-zA-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$"
+                        required={true}
+                        focused={focused.toString()}
+                        onBlur={handleFocus}
                     />
-
+                    {validation.password && <p>{validation.password}</p>}
                     <label htmlFor="con-pass">Confirm Password:</label>
                     <input
                         type="password"
                         name="repass"
                         value={values.repass}
                         onChange={onChangeHandler}
+                        pattern={values.password}
+                        required={true}
+                        focused={focused.toString()}
+                        onBlur={handleFocus}
                     />
-
+                    {validation.repass && <p>{validation.repass}</p>}
                     <input className="btn submit" type="submit" value="Register" />
                     <p className="field">
                         <span>If you already have profile click <Link to="/login">here</Link></span>
