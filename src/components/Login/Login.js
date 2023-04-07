@@ -7,7 +7,7 @@ import { useForm } from '../../hooks/useForm';
 
 export const Login = () => {
     const { onLoginSubmit } = useAuthContext();
-    const { values, onChangeHandler, onSubmit } = useForm({
+    const { values, validation, onChangeHandler, onSubmit } = useForm({
         email: '',
         password: ''
     }, onLoginSubmit);
@@ -27,6 +27,7 @@ export const Login = () => {
                         value={values.email}
                         onChange={onChangeHandler}
                     />
+                    {validation.email && <p>{validation.email}</p>}
 
                     <label htmlFor="login-pass">Password:</label>
                     <input
@@ -35,6 +36,7 @@ export const Login = () => {
                         value={values.password}
                         onChange={onChangeHandler}
                     />
+                     {validation.password && <p>{validation.password}</p>}
                     <input type="submit" className="btn submit" value="Login" />
                     <p className="field">
                         <span>If you don't have profile click <Link tp="/register">here</Link></span>
