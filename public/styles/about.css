@@ -33,11 +33,12 @@
     padding-right: 100px; 
      /* padding: 300px 800px; */
     /* padding-left: 50px; */
-    display: block;
+    display:block;
 }
 
 .image>img {
-    border: solid #1e571a;
+    border: 1px solid #1e571a;
     /* size: 200px 250px; */
     border-radius: 5ch;
+    width: 105%;
 }
