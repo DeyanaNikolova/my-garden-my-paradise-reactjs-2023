@@ -7,14 +7,20 @@
 }
 
 .content {
-    /* size: 800px; */
-    /* padding: 100px 800px; */
+ 
     border: solid #1e571a;
     padding-left: 30px;
     padding-right: 100px;
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 2.5ch;
+    background-color: antiquewhite;
+    size: 200px 250px;
+}
+.content>h2 {
+    color: #1e571a;
+    font-size: 30px;
+    text-align: center;
 }
 
 .paragraph {
@@ -24,12 +30,14 @@
 }
 
 .image {
-    padding: 300px 800px;
-    padding-left: 50px;
+    padding-right: 100px; 
+     /* padding: 300px 800px; */
+    /* padding-left: 50px; */
+    display: block;
 }
 
 .image>img {
     border: solid #1e571a;
-    size: 200px 250px;
+    /* size: 200px 250px; */
     border-radius: 5ch;
 }
