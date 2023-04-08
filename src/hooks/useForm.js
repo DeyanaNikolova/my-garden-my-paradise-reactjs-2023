@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 export const useForm = (initialValues, onSubmitHandler) => {
 
     const [values, setValues] = useState(initialValues);
-   const [validation, setValidation] = useState({ ...initialValues });
-   // const [focused, setFocused] = useState(false);
+    const [validation, setValidation] = useState({ ...initialValues });
 
     const onChangeHandler = (e) => {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -12,17 +11,7 @@ export const useForm = (initialValues, onSubmitHandler) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        // if(!values.email){
-        //     alert('Email is required!');
-        // }else if(!new RegExp('/^[a-zA-Z0-9]*@[a-zA-Z0-9]*.[a-zA-z]*$/').test(values.email)){
-        //     alert('Enter a valid email address');
-        // } else if(!values.password){
-        //     alert('Password is required');
-        // }else if(values.password.length < 6 || values.password.length > 20){
-        //     alert('Password should be 6-20 characters long');
-        // }else if(values.password !== values.repass){
-        //     alert('Passwords don\'t match');
-        // }
+
         onSubmitHandler(values);
 
         setValues(initialValues);
@@ -51,9 +40,9 @@ export const useForm = (initialValues, onSubmitHandler) => {
             errors.password = '';
         }
 
-        if(!values.repass){
+        if (!values.repass) {
             errors.repass = 'Confirm password is required!'
-        }else if (values.password !== values.repass) {
+        } else if (values.password !== values.repass) {
             errors.repass = 'Passwords don\'t match!';
         } else {
             errors.repass = '';
@@ -61,13 +50,9 @@ export const useForm = (initialValues, onSubmitHandler) => {
         setValidation(errors);
     };
 
-    // const handleFocus = (e) => {
-    //     setFocused(true);
-    // };
-
     useEffect(() => {
         onValidationCheck();
-        //  handleFocus();
+
     }, [values])
 
 
@@ -77,6 +62,6 @@ export const useForm = (initialValues, onSubmitHandler) => {
         onChangeHandler,
         onSubmit,
         changeValues,
-       
+
     };
 };

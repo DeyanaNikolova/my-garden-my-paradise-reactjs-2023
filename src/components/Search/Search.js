@@ -7,10 +7,10 @@ import { postServiceFactory } from '../../services/postService';
 export const Search = () => {
     const { posts } = usePostContext();
     const postService = postServiceFactory();
-    // console.log(posts.map(x => x.title));
-
+    
     const onSearchSubmit = async () => {
         const searchValue = values.search;
+        
      console.log(searchValue);
         const matches = await postService.getSearch(searchValue);
         console.log(matches);
@@ -37,7 +37,7 @@ export const Search = () => {
                     <button className="button">Search</button>
                 </div>
                 <div>
-
+                    {}
                 </div>
             </form>
         </section>
