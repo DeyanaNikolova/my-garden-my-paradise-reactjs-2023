@@ -8,7 +8,7 @@ import { useAuthContext } from '../../contexts/AuthContext';
 export const Register = () => {
     const { onRegisterSubmit } = useAuthContext();
    
-    const { values, validation, focused, onChangeHandler, onSubmit, handleFocus } = useForm({
+    const { values, validation, onChangeHandler, onSubmit } = useForm({
         email: '',
         password: '',
         repass: ''
@@ -25,15 +25,13 @@ export const Register = () => {
                     <input
                         type="email"
                         name="email"
-                        placeholder="maria@email.com"
+                        placeholder="maria@gmail.com"
                         value={values.email}
                         onChange={onChangeHandler}
                        // pattern="/^[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-z]*$/"
                         required={true}
-                       focused={focused.toString()}
-                        onBlur={handleFocus}
                     />
-                    {validation.email && <p>{validation.email}</p>}
+                    {validation.email && <span className="validation">{validation.email}</span>}
         
                     <label htmlFor="pass">Password:</label>
                     <input
@@ -41,12 +39,11 @@ export const Register = () => {
                         name="password"
                         value={values.password}
                         onChange={onChangeHandler}
-                        pattern="^(?=.*[0-9])(?=,*[a-zA-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$"
+                       // pattern="^(?=.*[0-9])(?=,*[a-zA-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,20}$"
                         required={true}
-                        focused={focused.toString()}
-                        onBlur={handleFocus}
                     />
-                    {validation.password && <p>{validation.password}</p>}
+                    {validation.password && <span className="validation">{validation.password}</span>}
+
                     <label htmlFor="con-pass">Confirm Password:</label>
                     <input
                         type="password"
@@ -55,10 +52,9 @@ export const Register = () => {
                         onChange={onChangeHandler}
                         pattern={values.password}
                         required={true}
-                        focused={focused.toString()}
-                        onBlur={handleFocus}
                     />
-                    {validation.repass && <p>{validation.repass}</p>}
+                    {validation.repass && <span className="validation">{validation.repass}</span>}
+                    
                     <input className="btn submit" type="submit" value="Register" />
                     <p className="field">
                         <span>If you already have profile click <Link to="/login">here</Link></span>

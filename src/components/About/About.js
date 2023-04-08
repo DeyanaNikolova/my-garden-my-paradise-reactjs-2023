@@ -6,5 +6,5 @@ export const About = () => {
                <p>The purpose of this blog is to gatter experienced and proven information of gardening  </p>
             </div>
         </section>
-    )
-}
+    );
+};

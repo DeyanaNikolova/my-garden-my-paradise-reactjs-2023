@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 export const useForm = (initialValues, onSubmitHandler) => {
 
     const [values, setValues] = useState(initialValues);
-    const [validation, setValidation] = useState({ ...initialValues });
-    const [focused, setFocused] = useState(false);
+   const [validation, setValidation] = useState({ ...initialValues });
+   // const [focused, setFocused] = useState(false);
 
     const onChangeHandler = (e) => {
         setValues(state => ({ ...state, [e.target.name]: e.target.value }));
@@ -12,7 +12,17 @@ export const useForm = (initialValues, onSubmitHandler) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
+        // if(!values.email){
+        //     alert('Email is required!');
+        // }else if(!new RegExp('/^[a-zA-Z0-9]*@[a-zA-Z0-9]*.[a-zA-z]*$/').test(values.email)){
+        //     alert('Enter a valid email address');
+        // } else if(!values.password){
+        //     alert('Password is required');
+        // }else if(values.password.length < 6 || values.password.length > 20){
+        //     alert('Password should be 6-20 characters long');
+        // }else if(values.password !== values.repass){
+        //     alert('Passwords don\'t match');
+        // }
         onSubmitHandler(values);
 
         setValues(initialValues);
@@ -36,7 +46,7 @@ export const useForm = (initialValues, onSubmitHandler) => {
         if (!values.password) {
             errors.password = 'Password is required!';
         } else if (values.password.length < 6 || values.password.length > 20) {
-            errors.password = 'Password should be 6-20 characrets long and it should include at least 1 letter, 1 numbe, and 1 special character!'
+            errors.password = 'Password should be 6-20 characters long!'
         } else {
             errors.password = '';
         }
@@ -51,23 +61,22 @@ export const useForm = (initialValues, onSubmitHandler) => {
         setValidation(errors);
     };
 
-    const handleFocus = (e) => {
-        setFocused(true);
-    };
+    // const handleFocus = (e) => {
+    //     setFocused(true);
+    // };
 
     useEffect(() => {
         onValidationCheck();
-          handleFocus();
+        //  handleFocus();
     }, [values])
 
 
     return {
         values,
         validation,
-        focused,
         onChangeHandler,
         onSubmit,
         changeValues,
-        handleFocus
+       
     };
 };

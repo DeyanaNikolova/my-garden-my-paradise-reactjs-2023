@@ -101,7 +101,7 @@ label[for="password"]>input {
     padding: 5px;
 }
 
-p {
+.validation {
     font-size: 18px;
     padding: 3px;
     color: red;
@@ -112,6 +112,6 @@ input:invalid[focused="true"]{
     border: 1px solid red;
 }
 
-input:invalid ~ p{
+input:invalid ~ .validation{
     display: block;
 }

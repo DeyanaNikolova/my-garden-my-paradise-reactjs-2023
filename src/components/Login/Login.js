@@ -23,11 +23,11 @@ export const Login = () => {
                     <input
                         type="email"
                         name="email"
-                        placeholder="maria@email.com"
+                        placeholder="maria@gmail.com"
                         value={values.email}
                         onChange={onChangeHandler}
                     />
-                    {validation.email && <p>{validation.email}</p>}
+                    {validation.email && <span className="validation">{validation.email}</span>}
 
                     <label htmlFor="login-pass">Password:</label>
                     <input
@@ -36,7 +36,7 @@ export const Login = () => {
                         value={values.password}
                         onChange={onChangeHandler}
                     />
-                     {validation.password && <p>{validation.password}</p>}
+                     {validation.password && <span className="validation">{validation.password}</span>}
                     <input type="submit" className="btn submit" value="Login" />
                     <p className="field">
                         <span>If you don't have profile click <Link tp="/register">here</Link></span>
