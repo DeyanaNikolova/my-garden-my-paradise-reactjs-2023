@@ -41,8 +41,10 @@
     color: rgb(44, 88, 21);
 }
 
-.comment p {
+.comment>p {
     padding: 16px;
+    color: rgb(16, 38, 4);
+    font-size: 20px;
 }
 
 

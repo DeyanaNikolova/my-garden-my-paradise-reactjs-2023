@@ -18,7 +18,7 @@ export const Header = () => {
           <div id="user">
             <Link to="/add-post" className="nav-links" >Add Post</Link>
             <Link to="/logout" className="nav-links" >Logout</Link>
-            <span className="nav-links" >{userEmail}</span>
+            <span className="nav-links" >Welcome {userEmail}</span>
           </div>
         )}
 

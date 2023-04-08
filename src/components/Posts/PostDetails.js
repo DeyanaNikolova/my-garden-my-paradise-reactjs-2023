@@ -28,8 +28,6 @@ export const PostDetails = () => {
                 comments,
             };
             dispatch({ type: 'post_fetch', payload: postState });
-            //      setPost(state => ({...state, ...postData,  comments:[...comments]}));
-            //     setComment(comments);
         });
     }, [postId]);
 
@@ -41,9 +39,7 @@ export const PostDetails = () => {
             payload: result,
             userEmail,
         });
-        // const newComment = Object.values(result.data);
-        //  setPost(state => ({...state, comments: {...newComment}}));
-        // setComment('');
+   
         navigate(`/posts/${postId}`);
     };
 

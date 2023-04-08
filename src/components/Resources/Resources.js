@@ -18,10 +18,10 @@ export const Resources = () => {
                 <h3>Horticulture magazine provides information on <a href="https://horticulture.co.uk/peonies/containers/" target="_blank">How To Grow Peonies In Pots</a></h3>
                 <h3> <a href="" target="_blank"></a></h3>
 
-                <h2 id="resource-type">Resources for Wild flowers</h2>
+                <h2 id="resource-type">Resources for Spring flowers</h2>
 
-                <h3> <a href="" target="_blank"></a></h3>
-                <h3> <a href="" target="_blank"></a></h3>
+                <h3>Advices on how to look after your spring flowwer you can find on <a href="https://www.thespruce.com/spring-flower-guide-1315963" target="_blank">Tips for a better spring flower garden</a></h3>
+                <h3>Information of the best time to start palnting spring flowers expleined by expert <a href="https://www.homesandgardens.com/gardens/when-to-start-planting-flowers-for-spring" target="_blank">When to start planting flowers for spring</a></h3>
                 <h3> <a href="" target="_blank"></a></h3>
             </div>
         </section>

@@ -21,7 +21,7 @@ export const About = () => {
                 </div>
                 <div className="content">
                     <p className="paragraph">
-                        The purpose of this blog is to gatter people with similar interests and share their practical advices.
+                        The purpose of this blog is to gatter people with similar interests where they can share their practical advices with a wither audience.
                     </p>
                 </div>
             </div>
