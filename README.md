@@ -1,31 +1,31 @@
-## My Garden My Paradise React.js Project
+# My Garden My Paradise React.js Project
 
-The project was designed as a blog for gardener who can post their articles on a subject related to growing and/or looking after their private gardens.
+The project was designed as a blog for gardeners who can post their articles on a subject related to growing and/or looking after their private gardens.
 
-### Public part
+## Public part
 
 The public part of project is designed for non-registered users. The guests who visits the site can access the following:
 
-# Home page -> 
+### Home page -> 
 The main dashboard page where guests can see a basic information and some of the latest published posts with a details page option.
-# About page ->
+### About page ->
 A page which provides a brief information of the purpose of the blog.
-# All Posts ->
+### All Posts ->
 A catalog page that shows all posts published with a details page option.
-# Register page ->
+### Register page ->
 A page with a register form where a guest can create an account as a user of the glog.
-# Login page ->
+### Login page ->
 A page where an existing user can login to the blog using their loding details.
 
-### Private part
+## Private part
 
-# Add post ->
+### Add post ->
 A page with a form for creatin new post.
-# Update post ->
+### Update post ->
 A page with a form for undatig a post omly if is created by the user.
-# Delete post ->
+### Delete post ->
 A page with a confirmation about the delition of a post selected by the author of post.
-# Comment to a post ->
+### Comment to a post ->
 An ability of a user to comment on a post published by another user.
 
 
