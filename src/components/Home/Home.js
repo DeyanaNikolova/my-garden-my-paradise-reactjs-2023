@@ -11,7 +11,7 @@ export const Home = () => {
         fetch(`${url}?sortBy=${querySort} desc`)
             .then(res => res.json())
             .then(result => {
-                const sliced = result.splice(0, 3)
+                const sliced = result.splice(0, 6)
 
                 setLatestPosts(sliced);
             });
